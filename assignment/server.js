@@ -24,7 +24,7 @@ const responseData = (req, res, file) => {
 
         } else if (extname === '.png') {
 
-            console.log('image')
+            // console.log('image')
             res.writeHead(200, { 'Content-type': 'image/png' });
 
             //console.log(data);
@@ -96,4 +96,4 @@ http.createServer((req, res) => {
         responseData(req, res, file);
     }
 
-}).listen(7800);
+}).listen(9000);
