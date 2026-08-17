@@ -1,0 +1,11 @@
+{
+  "name": "coursera-assignment",
+  "version": "1.0.0",
+  "description": "all coursera assignments included here",
+  "main": "index.js",
+  "scripts": {
+    "test": "hello test"
+  },
+  "author": "hunter_wolf_xyz",
+  "license": "ISC"
+}

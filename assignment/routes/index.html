@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StayScape – Book Your Stay</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="public/css/all.css" />
+</head>
+
+<body>
+
+    <!-- ========== LOADING OVERLAY ========== -->
+    <div id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- ========== HEADER ========== -->
+    <header id="mainHeader">
+        <div class="logo">
+            <i class="fas fa-building"></i>
+            <span>StayScape</span>
+        </div>
+        <nav>
+            <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
+            <a href="#results"><i class="fas fa-search"></i> Explore</a>
+            <a href="#my-bookings"><i class="fas fa-calendar-check"></i> My Trips</a>
+            <a href="#" class="nav-cta"><i class="fas fa-user-plus"></i> Sign In</a>
+        </nav>
+    </header>
+
+    <!-- ========== HERO WITH SCROLLING BANNER ========== -->
+    <section class="hero" id="hero">
+        <!-- Carousel Slides -->
+        <div class="hero-carousel">
+            <div class="hero-slide active">
+                <img src="public/image/hero-1.png" alt="Hero 1" />
+            </div>
+            <div class="hero-slide">
+                <img src="public/image/hero-2.png" alt="Hero 2" />
+            </div>
+            <div class="hero-slide">
+                <img src="public/image/hero-3.png" alt="Hero 3" />
+            </div>
+            <div class="hero-overlay">
+
+
+                <div class="hero-content">
+                    <h2>Find your <span class="highlight">perfect stay</span></h2>
+                    <p>Discover hand-picked hotels, resorts &amp; homes — book with confidence.</p>
+                    <!-- 
+            <div class="trust-badges">
+                <span class="badge"><i class="fas fa-shield-alt"></i> Best price guarantee</span>
+                <span class="badge"><i class="fas fa-lock"></i> Secure booking</span>
+                <span class="badge"><i class="fas fa-headset"></i> 24/7 support</span>
+                <span class="badge"><i class="fas fa-star"></i> 4.8/5 average rating</span>
+            </div> -->
+
+                    <!-- Desktop Form (visible on large screens) -->
+                    <form class="search-form desktop-form" id="searchForm">
+                        <div class="form-group">
+                            <label for="destination"><i class="fas fa-map-pin"></i> Destination</label>
+                            <input type="text" id="destination" placeholder="City, resort, or area" value="Paris" />
+                        </div>
+                        <div class="form-group">
+                            <label for="checkin"><i class="fas fa-calendar-alt"></i> Check-in</label>
+                            <input type="date" id="checkin" />
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout"><i class="fas fa-calendar-alt"></i> Check-out</label>
+                            <input type="date" id="checkout" />
+                        </div>
+                        <div class="form-group">
+                            <label for="guests"><i class="fas fa-users"></i> Guests</label>
+                            <select id="guests">
+                                <option value="1">1 Guest</option>
+                                <option value="2" selected>2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5">5+ Guests</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-search" id="searchBtn">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </form>
+
+                    <!-- Mobile: Book Now Button -->
+                    <button class="mobile-book-btn" id="mobileBookBtn">
+                        <i class="fas fa-calendar-plus"></i> Book Now
+                    </button>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+        <!-- Carousel Indicators (Dots) -->
+        <div class="carousel-indicators" id="heroIndicators">
+            <button class="dot active" data-index="0"></button>
+            <button class="dot" data-index="1"></button>
+            <button class="dot" data-index="2"></button>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!--  MOBILE BOOKING MODAL (triggered by "Book Now" button)        -->
+    <!-- ============================================================ -->
+    <div class="mobile-form-modal" id="mobileFormModal">
+        <div class="modal-box">
+            <button class="close-modal" id="closeMobileModal">&times;</button>
+            <h2>Plan Your Stay</h2>
+            <p class="modal-sub">Fill in your details to find the perfect place.</p>
+
+            <form id="mobileSearchForm">
+                <div class="form-group-mobile">
+                    <label for="mobileDestination"><i class="fas fa-map-pin"></i> Destination</label>
+                    <input type="text" id="mobileDestination" placeholder="City, resort, or area" value="Paris" />
+                </div>
+                <div class="form-group-mobile">
+                    <label for="mobileCheckin"><i class="fas fa-calendar-alt"></i> Check-in</label>
+                    <input type="date" id="mobileCheckin" />
+                </div>
+                <div class="form-group-mobile">
+                    <label for="mobileCheckout"><i class="fas fa-calendar-alt"></i> Check-out</label>
+                    <input type="date" id="mobileCheckout" />
+                </div>
+                <div class="form-group-mobile">
+                    <label for="mobileGuests"><i class="fas fa-users"></i> Guests</label>
+                    <select id="mobileGuests">
+                        <option value="1">1 Guest</option>
+                        <option value="2" selected>2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4 Guests</option>
+                        <option value="5">5+ Guests</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit-mobile">
+                    <i class="fas fa-search"></i> Search Properties
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  POPULAR BOOKING SITES                                        -->
+    <!-- ============================================================ -->
+    <section class="popular-sites" id="popular-sites">
+        <div class="section-label"><i class="fas fa-globe-americas"></i> Trusted Partners</div>
+        <h2>Book on <span>popular platforms</span></h2>
+        <div class="sites-grid">
+            <div class="site-card">
+                <div class="site-img">
+                    <img src="https://picsum.photos/seed/booking/400/300" alt="Booking.com" loading="lazy" />
+                    <div class="site-overlay"></div>
+                </div>
+                <div class="site-body">
+                    <div class="site-name">Booking.com</div>
+                    <div class="site-desc">Global leader in stays</div>
+                    <span class="site-badge">★ 4.8</span>
+                </div>
+            </div>
+            <div class="site-card">
+                <div class="site-img">
+                    <img src="https://picsum.photos/seed/airbnb/400/300" alt="Airbnb" loading="lazy" />
+                    <div class="site-overlay"></div>
+                </div>
+                <div class="site-body">
+                    <div class="site-name">Airbnb</div>
+                    <div class="site-desc">Homes &amp; experiences</div>
+                    <span class="site-badge">★ 4.7</span>
+                </div>
+            </div>
+            <div class="site-card">
+                <div class="site-img">
+                    <img src="https://picsum.photos/seed/expedia/400/300" alt="Expedia" loading="lazy" />
+                    <div class="site-overlay"></div>
+                </div>
+                <div class="site-body">
+                    <div class="site-name">Expedia</div>
+                    <div class="site-desc">Flights + hotels</div>
+                    <span class="site-badge">★ 4.6</span>
+                </div>
+            </div>
+            <div class="site-card">
+                <div class="site-img">
+                    <img src="https://picsum.photos/seed/agoda/400/300" alt="Agoda" loading="lazy" />
+                    <div class="site-overlay"></div>
+                </div>
+                <div class="site-body">
+                    <div class="site-name">Agoda</div>
+                    <div class="site-desc">Best deals in Asia</div>
+                    <span class="site-badge">★ 4.5</span>
+                </div>
+            </div>
+            <div class="site-card">
+                <div class="site-img">
+                    <img src="https://picsum.photos/seed/hotelscom/400/300" alt="Hotels.com" loading="lazy" />
+                    <div class="site-overlay"></div>
+                </div>
+                <div class="site-body">
+                    <div class="site-name">Hotels.com</div>
+                    <div class="site-desc">Rewards for every stay</div>
+                    <span class="site-badge">★ 4.4</span>
+                </div>
+            </div>
+            <div class="site-card">
+                <div class="site-img">
+                    <img src="https://picsum.photos/seed/tripcom/400/300" alt="Trip.com" loading="lazy" />
+                    <div class="site-overlay"></div>
+                </div>
+                <div class="site-body">
+                    <div class="site-name">Trip.com</div>
+                    <div class="site-desc">Travel &amp; accommodation</div>
+                    <span class="site-badge">★ 4.3</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== RESULTS (FEATURED STAYS) ========== -->
+    <section class="results-section" id="results">
+        <div class="results-header">
+            <h2>✨ Featured <span>Stays</span></h2>
+            <span class="results-count" id="resultsCount">0 properties</span>
+        </div>
+
+        <div class="results-grid" id="resultsGrid">
+            <!-- Cards injected by JS -->
+        </div>
+
+        <!-- ===== MY BOOKINGS ===== -->
+        <div class="my-bookings" id="my-bookings">
+            <h3><i class="fas fa-suitcase"></i> My Bookings</h3>
+            <div id="bookingsList">
+                <div class="no-bookings">You have no upcoming bookings.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!--  REVIEWS CAROUSEL                                             -->
+    <!-- ============================================================ -->
+    <section class="reviews-section" id="reviews">
+        <div class="section-label"><i class="fas fa-quote-left"></i> Testimonials</div>
+        <h2>What our <span>guests say</span></h2>
+        <p class="reviews-sub">Real stories from real travelers — updated daily</p>
+
+        <div class="reviews-carousel-wrapper">
+            <button class="carousel-btn prev" id="reviewPrev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-btn next" id="reviewNext"><i class="fas fa-chevron-right"></i></button>
+
+            <div class="reviews-track" id="reviewsTrack">
+                <!-- Slide 1 -->
+                <div class="review-slide">
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">Absolutely stunning experience! The Grand Plaza Hotel exceeded all
+                        expectations. The staff was incredible and the views of Paris were unforgettable.</p>
+                    <div class="review-author">
+                        <div class="avatar">JD</div>
+                        <div class="author-info">
+                            <strong>Jessica Davis</strong>
+                            <small>Traveled from New York · 2 weeks ago</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="review-slide">
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">Sea Breeze Resort is paradise on earth. The beachfront access, the pool, the
+                        food — everything was top-notch. I'll definitely be back!</p>
+                    <div class="review-author">
+                        <div class="avatar">MK</div>
+                        <div class="author-info">
+                            <strong>Michael Kim</strong>
+                            <small>Traveled from Seoul · 1 month ago</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="review-slide">
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">Mountain View Lodge was a dream. Waking up to the Swiss Alps right outside my
+                        window was magical. The sauna and fireplace made it extra cozy.</p>
+                    <div class="review-author">
+                        <div class="avatar">SR</div>
+                        <div class="author-info">
+                            <strong>Sarah Robinson</strong>
+                            <small>Traveled from London · 3 weeks ago</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="review-slide">
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="review-text">Downtown Loft was perfect for my NYC trip. Super central, modern, and quiet
+                        despite being in the heart of the city. Highly recommend!</p>
+                    <div class="review-author">
+                        <div class="avatar">AL</div>
+                        <div class="author-info">
+                            <strong>Alex Liu</strong>
+                            <small>Traveled from Singapore · 1 week ago</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="review-slide">
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">Sands of Time Hotel in Dubai is pure luxury. The service, the pool, the views
+                        — everything was flawless. Worth every penny!</p>
+                    <div class="review-author">
+                        <div class="avatar">EM</div>
+                        <div class="author-info">
+                            <strong>Elena Martinez</strong>
+                            <small>Traveled from Madrid · 2 months ago</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 6 -->
+                <div class="review-slide">
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">Cherry Blossom Inn captured the essence of Kyoto. The garden, the tea
+                        ceremony, and the hospitality were simply unforgettable. A hidden gem.</p>
+                    <div class="review-author">
+                        <div class="avatar">TO</div>
+                        <div class="author-info">
+                            <strong>Thomas Okafor</strong>
+                            <small>Traveled from Lagos · 3 months ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-dots" id="reviewDots"></div>
+        </div>
+    </section>
+
+    <!-- ========== MODAL ========== -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-box">
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+            <div class="modal-icon" id="modalIcon">🏨</div>
+            <h2>Confirm Booking</h2>
+            <p class="modal-sub" id="modalPropertyName">Property Name</p>
+
+            <div class="modal-detail">
+                <span><i class="fas fa-calendar-check"></i> Check-in</span>
+                <span id="modalCheckin">—</span>
+            </div>
+            <div class="modal-detail">
+                <span><i class="fas fa-calendar-check"></i> Check-out</span>
+                <span id="modalCheckout">—</span>
+            </div>
+            <div class="modal-detail">
+                <span><i class="fas fa-users"></i> Guests</span>
+                <span id="modalGuests">—</span>
+            </div>
+            <div class="modal-detail">
+                <span><i class="fas fa-map-pin"></i> Location</span>
+                <span id="modalLocation">—</span>
+            </div>
+
+            <div class="modal-total">
+                <span>Total</span>
+                <span id="modalTotal">$0</span>
+            </div>
+
+            <button class="btn-confirm" id="confirmBookingBtn">
+                <i class="fas fa-check-circle"></i> Confirm &amp; Book
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== TOAST ========== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="footer-links">
+            <a href="#"><i class="fas fa-globe"></i> About</a>
+            <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+            <a href="#"><i class="fas fa-shield-alt"></i> Privacy</a>
+            <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+        <p>&copy; 2026 <span>StayScape</span> — crafted with <span class="footer-heart"><i
+                    class="fas fa-heart"></i></span> for wanderers.</p>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        const properties = [{
+            id: 1,
+            name: 'Grand Plaza Hotel',
+            location: 'Paris, France',
+            pricePerNight: 240,
+            image: 'https://picsum.photos/seed/grandplaza/600/400',
+            amenities: ['WiFi', 'Pool', 'Spa', 'Restaurant'],
+            rating: 4.8
+        }, {
+            id: 2,
+            name: 'Sea Breeze Resort',
+            location: 'Bali, Indonesia',
+            pricePerNight: 185,
+            image: 'https://picsum.photos/seed/seabreeze/600/400',
+            amenities: ['Beachfront', 'Pool', 'Bar', 'Gym'],
+            rating: 4.7
+        }, {
+            id: 3,
+            name: 'Mountain View Lodge',
+            location: 'Swiss Alps, Switzerland',
+            pricePerNight: 310,
+            image: 'https://picsum.photos/seed/mountainlodge/600/400',
+            amenities: ['Sauna', 'Hiking', 'Fireplace', 'WiFi'],
+            rating: 4.9
+        }, {
+            id: 4,
+            name: 'Downtown Loft',
+            location: 'New York, USA',
+            pricePerNight: 275,
+            image: 'https://picsum.photos/seed/downtownloft/600/400',
+            amenities: ['WiFi', 'Kitchen', 'Gym', 'Workspace'],
+            rating: 4.6
+        }, {
+            id: 5,
+            name: 'Sands of Time Hotel',
+            location: 'Dubai, UAE',
+            pricePerNight: 420,
+            image: 'https://picsum.photos/seed/sandstime/600/400',
+            amenities: ['Pool', 'Spa', 'Restaurant', 'Valet'],
+            rating: 4.9
+        }, {
+            id: 6,
+            name: 'Cherry Blossom Inn',
+            location: 'Kyoto, Japan',
+            pricePerNight: 195,
+            image: 'https://picsum.photos/seed/cherryblossom/600/400',
+            amenities: ['Garden', 'Tea House', 'WiFi', 'Bike Rental'],
+            rating: 4.8
+        }];
+    </script>
+    <script src="public/js/index.js"></script>
+    <script>console.log(document.querySelector('.hero-overlay'))
+
+
+        function resize() {
+
+            const m_height = document.querySelector('.hero-slide img').clientHeight;
+            document.querySelector('#hero').style.minHeight = `${m_height}px`;
+
+        }
+
+        window.addEventListener('resize', function () {
+
+            resize();
+
+
+
+        })
+        resize();
+
+
+    </script>
+</body>
+
+</html>
